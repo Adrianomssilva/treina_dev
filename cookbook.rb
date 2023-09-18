@@ -1,38 +1,48 @@
+
+CADASTRAR_RECEITA = 1
+LISTA_RECEITAS = 2
+BUSCAR_RECEITAS = 3
+SAIR = 4
+
 puts 'Bem vindo ao Cookbook sua rede social de receitas!'
 
-receitas = []
+def menu
+  puts "[#{CADASTRAR_RECEITAS}] Cadastrar uma receita"
+  puts "[#{LISTA_RECEITAS}] Ver todas as receitas"
+  puts "[#{BUSCAR_RECEITAS}] Buscar Receitas"
+  puts "[#{SAIR}] Sair"
 
-puts "[1] Cadastrar uma receita"
-puts "[2] Ver todas as receitas"
-puts "[3] Sair"
+  print "Escolha uma opção: "
+  gets.to_i
+end
 
-print "Escolha uma opção: "
-opcao = gets.to_i
-
-while (opcao != 3)
-  if opcao == 1
-    puts 'Digite o nome da receita: '
+def cadastrar_receita
+  puts 'Digite o nome da receita: '
     nome = gets.chomp
     puts 'Digite o tipo da receita: '
     tipo = gets.chomp
-    receitas << {nome: nome, tipo: tipo}
     puts
     puts "Receita #{nome} cadastrada com sucesso!!"
     puts
+    {nome: nome, tipo: tipo}
+end
+
+def lista_receitas(valor)
+  puts "========= Receitas cadastradas ========="
+    valor.each  do |receita|
+      puts "#{receita[:nome]} - #{receita[:tipo]}"
+    end
+end
+opcao = menu
+receitas = []
+while (opcao != 3)
+  if opcao == 1
+    receitas << cadastrar_receita
   elsif opcao == 2
-    puts "========= Receitas cadastradas ========="
-      receitas.each  do |receita|
-        puts receita
-      end
+    lista_receitas(receitas)
   else
     puts "Digite uma opção válida!"
   end
-  puts
-  puts "[1] Cadastrar uma receita"
-  puts "[2] Ver todas as receitas"
-  puts "[3] Sair"
-
-  print "Escolha uma opção: "
-  opcao = gets.to_i
+  opcao = menu
 end
 puts "Obrigado por usar o Cookbook!!"
