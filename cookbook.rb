@@ -13,7 +13,9 @@ while (opcao != 3)
   if opcao == 1
     puts 'Digite o nome da receita: '
     nome = gets.chomp
-    receitas << nome
+    puts 'Digite o tipo da receita: '
+    tipo = gets.chomp
+    receitas << {nome: nome, tipo: tipo}
     puts
     puts "Receita #{nome} cadastrada com sucesso!!"
     puts
@@ -25,5 +27,12 @@ while (opcao != 3)
   else
     puts "Digite uma opção válida!"
   end
+  puts
+  puts "[1] Cadastrar uma receita"
+  puts "[2] Ver todas as receitas"
+  puts "[3] Sair"
+
+  print "Escolha uma opção: "
+  opcao = gets.to_i
 end
 puts "Obrigado por usar o Cookbook!!"
