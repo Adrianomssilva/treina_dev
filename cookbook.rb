@@ -7,7 +7,7 @@ SAIR = 4
 puts 'Bem vindo ao Cookbook sua rede social de receitas!'
 
 def menu
-  puts "[#{CADASTRAR_RECEITAS}] Cadastrar uma receita"
+  puts "[#{CADASTRAR_RECEITA}] Cadastrar uma receita"
   puts "[#{LISTA_RECEITAS}] Ver todas as receitas"
   puts "[#{BUSCAR_RECEITAS}] Buscar Receitas"
   puts "[#{SAIR}] Sair"
@@ -33,13 +33,28 @@ def lista_receitas(valor)
       puts "#{receita[:nome]} - #{receita[:tipo]}"
     end
 end
+
+def buscar_receitas (receitas)
+  puts "Digite o nome ou tipo da receita que deseja buscar: "
+  nome =  gets.chomp.downcase
+  receitas.each do |receita|
+    if receita[:nome].downcase == nome || receita[:tipo].downcase == nome
+      puts "#{receita[:nome]} - #{receita[:tipo]}"
+    end
+  end
+end
+
 opcao = menu
 receitas = []
-while (opcao != 3)
-  if opcao == 1
+loop do
+  if opcao == CADASTRAR_RECEITA
     receitas << cadastrar_receita
-  elsif opcao == 2
+  elsif opcao == LISTA_RECEITAS
     lista_receitas(receitas)
+  elsif opcao == BUSCAR_RECEITAS
+    buscar_receitas(receitas)
+  elsif opcao == SAIR
+    break
   else
     puts "Digite uma opção válida!"
   end
