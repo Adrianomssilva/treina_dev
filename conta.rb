@@ -8,4 +8,22 @@ class Conta
     @saldo = saldo
   end
 
+  def sacar(valor)
+    if @saldo >= valor
+    @saldo -= valor
+    else
+      puts 'Saldo indisponível'
+    end
+  end
+  
+  def depositar(valor)
+    @saldo += valor
+  end
+
+  def transferir (outra_conta, valor)
+    sacar(valor)
+    outra_conta.depositar(valor)
+  end
+
+
 end
