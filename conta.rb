@@ -10,9 +10,10 @@ class Conta
 
   def sacar(valor)
     if @saldo >= valor
-    @saldo -= valor
+      @saldo -= valor
     else
       puts 'Saldo indisponível'
+      
     end
   end
   
@@ -21,8 +22,11 @@ class Conta
   end
 
   def transferir (outra_conta, valor)
-    sacar(valor)
+    if sacar(valor); true
     outra_conta.depositar(valor)
+    else 
+      puts 'Não foi possível concluir a transferência'
+    end
   end
 
 
